@@ -1,8 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
+//import validator from "validator";
 
 function Step8({ formData, setFormData, handleStepChange }) {
+  //const [error, setError] = useState(false);
+
+
+  const formSubmitHandler = async (event) => {
+    event.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append('email', formData.email);
+      formData.append('password', formData.email);
+      formData.append('verificationCode', formData.email);
+      formData.append('firstName', formData.email);
+      formData.append('lastName', formData.email);
+      formData.append('phone', formData.email);
+      formData.append('country', formData.email);
+      formData.append('dob', formData.email);
+      formData.append('displayName', formData.email);
+      formData.append('terms', formData.email);
+      formData.append('marketing', formData.email);
+      
+      console.log(formData);
+      return false;
+      // await sendRequest(
+      //   `${process.env.REACT_APP_BACKEND_API}/dealerships`,
+      //   'POST',
+      //   formData,
+      //   {
+      //     Authorization: 'Bearer ' + auth.token,
+      //   }
+      // );
+      // nav('/');
+    } catch (err) {}
+  };
+
+
   return (
     <div className="reg-step clearfix container" id="reg-step-8">
+      <form encType="multipart/form-data" onSubmit={formSubmitHandler}>
       <div className="reg-step-inner clearfix">
         <h2 className="reg-step-title-1 mb-3">Select Your Avatar</h2>
         <div className="reg-avatar-selector-con clearfix">
@@ -40,7 +76,10 @@ function Step8({ formData, setFormData, handleStepChange }) {
                     className="reg-avatar-selector-item-inner clearfix"
                   >
                     <img
-                      src={process.env.PUBLIC_URL + '/images/avatars-KavzB06IdWwLRfS7-NzQoQA-t500x500.jpg'}
+                      src={
+                        process.env.PUBLIC_URL +
+                        '/images/avatars-KavzB06IdWwLRfS7-NzQoQA-t500x500.jpg'
+                      }
                       alt="Neon Droid"
                       className="object-fit-cover w-100 h-100"
                     />
@@ -100,7 +139,10 @@ function Step8({ formData, setFormData, handleStepChange }) {
                     className="reg-avatar-selector-item-inner clearfix"
                   >
                     <img
-                      src={process.env.PUBLIC_URL + '/images/avatars-KavzB06IdWwLRfS7-NzQoQA-t500x500.jpg'}
+                      src={
+                        process.env.PUBLIC_URL +
+                        '/images/avatars-KavzB06IdWwLRfS7-NzQoQA-t500x500.jpg'
+                      }
                       alt="Neon Droid"
                       className="object-fit-cover w-100 h-100"
                     />
@@ -147,9 +189,17 @@ function Step8({ formData, setFormData, handleStepChange }) {
           <a href="#" className="reg-link-2 d-table me-4">
             Skip for Now
           </a>
-          <button className="reg-btn-blue-1">Save & Play</button>
+          <button
+            className="reg-btn-blue-1"
+            onClick={() => {
+              console.log(formData);
+            }}
+          >
+            Save & Play
+          </button>
         </div>
       </div>
+      </form>
     </div>
   );
 }

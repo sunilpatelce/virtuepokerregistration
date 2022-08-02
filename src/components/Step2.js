@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import validator from "validator";
 
 function Step2({ formData, setFormData, handleStepChange }) {
+  const [errorFields, setErrorFields] = useState({verificationCode:false});
+  // after form submit validating the form data using validator
+  const submitFormData = (e) => {
+    e.preventDefault();
+    
+    // checking if value of first name and last name is empty show error else take to step 2
+    if (validator.isEmpty(formData.verificationCode) || validator.isLength(formData.verificationCode) < 6 ){
+      setErrorFields({verificationCode:true});
+    } else {
+      handleStepChange(3);
+    }
+  };
   return (
     <div className="reg-step clearfix" id="reg-step-2">
       <div className="reg-step-inner clearfix">
@@ -10,12 +23,31 @@ function Step2({ formData, setFormData, handleStepChange }) {
         </div>
         <h3 className="reg-step-title-2 my-3">Enter Code :</h3>
         <div className="form-group otp-form-group mb-3">
+
+        <input
+            type="text"
+            className="form-control"
+            placeholder="Verification Code"
+            value={formData.verificationCode}
+            inputMode="numeric" 
+            style={{ border: errorFields.verificationCode ? "1px solid red" : "" }}
+            onChange={(event) =>
+              setFormData({ ...formData, verificationCode: event.target.value })
+            }
+          />
+          {errorFields.verificationCode ? (
+                <span style={{ color: "red", fontSize: "12px" }}>
+                  Please enter valid Verification Code.
+                </span>
+              ) : (
+                ""
+              )}
+          {/* <input type="text" className="form-control" inputMode="numeric" />
           <input type="text" className="form-control" inputMode="numeric" />
           <input type="text" className="form-control" inputMode="numeric" />
           <input type="text" className="form-control" inputMode="numeric" />
           <input type="text" className="form-control" inputMode="numeric" />
-          <input type="text" className="form-control" inputMode="numeric" />
-          <input type="text" className="form-control" inputMode="numeric" />
+          <input type="text" className="form-control" inputMode="numeric" /> */}
         </div>
         <div className="form-text mb-1">
           Not seeing your verification code ?

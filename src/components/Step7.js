@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import validator from "validator";
 
 function Step7({ formData, setFormData, handleStepChange }) {
+  const [error, setError] = useState(false);
   return (
     <div className="reg-step clearfix has-reg-inner-steps" id="reg-step-7">
       <div className="reg-step-inner clearfix active">

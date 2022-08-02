@@ -15,12 +15,15 @@ function Form() {
     email: '',
     password: '',
     confirmPassword: '',
+    verificationCode: '',
     firstName: '',
     lastName: '',
     phone: '',
     country: '',
     dob: '',
     displayName: '',
+    terms: '',
+    marketing: '',
   });
 
   const PageDisplay = () => {

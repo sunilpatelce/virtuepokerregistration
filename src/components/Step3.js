@@ -19,19 +19,24 @@ function Step3({ formData, setFormData, handleStepChange }) {
           Earn more coins by setting up your Profile
         </p>
         <div className="btns-holder-1 d-flex mt-4">
-          <button className="reg-btn-blue-1 inner-next-reg-step-btn me-sm-3 mb-3 mb-sm-0 flex-grow-1 col-sm-6 col-12" onClick={() => {
-            handleStepChange(4);
-          }}>
+          <button
+            className="reg-btn-blue-1 inner-next-reg-step-btn me-sm-3 mb-3 mb-sm-0 flex-grow-1 col-sm-6 col-12"
+            onClick={() => {
+              handleStepChange(4);
+            }}
+          >
             Play Now
           </button>
-          <button className="reg-btn-green-1 next-reg-step-btn flex-grow-1 col-sm-6 col-12" onClick={() => {
-            handleStepChange(5);
-          }}>
+          <button
+            className="reg-btn-green-1 next-reg-step-btn flex-grow-1 col-sm-6 col-12"
+            onClick={() => {
+              handleStepChange(5);
+            }}
+          >
             Continue
           </button>
         </div>
       </div>
-      
     </div>
   );
 }

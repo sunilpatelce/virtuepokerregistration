@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import validator from "validator";
 
 function Step1({ formData, setFormData, handleStepChange }) {
+  const [errorFields, setErrorFields] = useState({email:false, password:false, confirmPassword:false});
+
+    // after form submit validating the form data using validator
+    const submitFormData = (e) => {
+      e.preventDefault();
+      
+      // checking if value of first name and last name is empty show error else take to step 2
+      if (validator.isEmpty(formData.email) || !validator.isEmail(formData.email)){
+        setErrorFields({email:true, password:false, confirmPassword:false});
+      }else if(validator.isEmpty(formData.password) || !validator.isStrongPassword(formData.password)){
+        setErrorFields({email:false, password:true, confirmPassword:false});
+      }else if(validator.isEmpty(formData.confirmPassword) || !validator.equals(formData.confirmPassword, formData.password) ){
+        setErrorFields({email:false, password:false, confirmPassword:true});
+      } else {
+        handleStepChange(2);
+      }
+    };
+
   return (
     <div className="reg-step clearfix" id="reg-step-1">
       <div className="reg-step-inner clearfix">
         <h2 className="reg-step-title-1 mb-3">Create an Account</h2>
+        <form onSubmit={submitFormData}>
         <div className="form-group mb-3">
           <input
             type="email"
@@ -12,21 +32,37 @@ function Step1({ formData, setFormData, handleStepChange }) {
             className="form-control"
             value={formData.email}
             placeholder="Email Address"
+            style={{ border: errorFields.email ? "1px solid red" : "" }}
             onChange={(event) =>
               setFormData({ ...formData, email: event.target.value })
             }
           />
+          {errorFields.email ? (
+                <span style={{ color: "red", fontSize: "12px" }}>
+                  Please enter valid email.
+                </span>
+              ) : (
+                ""
+              )}
         </div>
         <div className="form-group mb-3">
           <input
             type="password"
             className="form-control"
             placeholder="Password"
+            style={{ border: errorFields.password ? "1px solid red" : "" }}
             value={formData.password}
             onChange={(event) =>
               setFormData({ ...formData, password: event.target.value })
             }
           />
+          {errorFields.password ? (
+                <span style={{ color: "red", fontSize: "12px" }}>
+                  Please enter strong password.
+                </span>
+              ) : (
+                ""
+              )}
           <div className="pass-indi-holder">
             <span className="pass-indi bg-danger"></span>
             <span className="pass-indi bg-danger"></span>
@@ -43,20 +79,27 @@ function Step1({ formData, setFormData, handleStepChange }) {
             type="password"
             className="form-control"
             placeholder="Confirm Password"
+            style={{ border: errorFields.confirmPassword ? "1px solid red" : "" }}
             value={formData.confirmPassword}
             onChange={(event) =>
               setFormData({ ...formData, confirmPassword: event.target.value })
             }
           />
+          {errorFields.confirmPassword ? (
+                <span style={{ color: "red", fontSize: "12px" }}>
+                  Confirm Password not matching with password.
+                </span>
+              ) : (
+                ""
+              )}
         </div>
         <button
           className="reg-btn-blue-1 w-100 next-reg-step-btn"
-          onClick={() => {
-            handleStepChange(2);
-          }}
+          type="submit"
         >
           Continue
         </button>
+        </form>
         <div className="ortext">
           <p>Or Sign up with</p>
         </div>

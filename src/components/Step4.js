@@ -17,14 +17,20 @@ function Step4({ formData, setFormData, handleStepChange }) {
           more <span className="text-success">FREE Coins</span> ?
         </p>
         <div className="btns-holder-1 d-flex mt-4">
-          <button className="reg-btn-blue-1 me-sm-3 mb-3 mb-sm-0 flex-grow-1 col-sm-6 col-12" onClick={() => {
-            handleStepChange(8);
-          }}>
+          <button
+            className="reg-btn-blue-1 me-sm-3 mb-3 mb-sm-0 flex-grow-1 col-sm-6 col-12"
+            onClick={() => {
+              handleStepChange(8);
+            }}
+          >
             Yes, Let me in
           </button>
-          <button className="reg-btn-green-1 next-reg-step-btn flex-grow-1 col-sm-6 col-12" onClick={() => {
-            handleStepChange(5);
-          }}>
+          <button
+            className="reg-btn-green-1 next-reg-step-btn flex-grow-1 col-sm-6 col-12"
+            onClick={() => {
+              handleStepChange(5);
+            }}
+          >
             No, Let me earn more
           </button>
         </div>
