@@ -86,7 +86,7 @@ function Form() {
     } else {
       return (
         <Step8
-          formData={formData}
+          formState={formData}
           setFormData={setFormData}
           handleStepChange={handleStepChange}
         />
